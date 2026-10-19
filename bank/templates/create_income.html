@@ -1,26 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
+    <h1>Create an income</h1>
     <form method="POST">
         {% csrf_token %}
         <label for="amount">amount</label>
         <input type="number" name="amount" id="amount">
         <br><br>
-        <label for="catergory">Catergory:</label>
+        <label for="category">Catergory:</label>
         <input type="text" name="catergory" id="category">
         <br><br>
-        <label for="user">User</label>
-        <select name="user" id="user">
-            {% for i in users %}
-            <option value="i.id">{{i.username}}</option>
-            {% endfor %}
-        </select>
-
         <button type="submit">create</button>
     </form>
 </body>

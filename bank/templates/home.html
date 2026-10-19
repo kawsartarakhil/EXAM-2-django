@@ -1,20 +1,52 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home</title><link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <h1>Your incomes</h1>
-    <table>
+    <table class="table">
         {% for i in incomes %}
         <tr>
-            <td>{{i.user}}</td>
+            <th>Amount</th>
+            <th>Catergory</th>
+            <th>Created at</th>
+            <th></th>
+        </tr>
+        <tr>
             <td>{{i.amount}}</td>
+            <td>{{i.catergory}}</td>
+            <td>{{i.created_at}}</td>
+            <td><a href="{% url 'update_income' i.id %}" class="edit">Update</a><a href="{% url 'delete_income' i.id %}" class="delete">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
 
+    <h1>Your expences</h1>
+    <table>
+        {% for i in expences %}
+        <tr>
+            <th>Amount</th>
+            <th>Catergory</th>
+            <th>Created at</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>{{i.amount}}</td>
+            <td>{{i.catergory}}</td>
+            <td>{{i.created_at}}</td>
+            <td><a href="{% url 'update_expence' i.id %}" class="edit">Update</a><a href="{% url 'delete_expence' i.id %}" class="delete">Delete</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+<div class="btns">
+    <a href="{% url 'create' %}"><button>Create Income</button></a>
+<a href="{% url 'expence' %}"><button>Create Expence</button></a>
+<a href="{% url 'logout' %}"><button>Logout</button></a>
+</div>
 </body>
 </html>
